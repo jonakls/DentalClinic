@@ -8,18 +8,18 @@ public class PersistenceController {
     private final UserJpaController userJpaController = new UserJpaController();
 
     public void createUser(final UserEntity user) {
-        userJpaController.create(user);
+        this.userJpaController.create(user);
     }
 
     public UserEntity findUserEntity(final String id) {
-        return userJpaController.findUserEntity(id);
+        return this.userJpaController.findUserEntity(id);
     }
 
     public void updateUser(final UserEntity user) {
-        userJpaController.update(user);
+        this.userJpaController.update(user);
     }
 
     public void deleteUser(final UserEntity user) {
-        userJpaController.delete(user);
+        this.userJpaController.delete(user);
     }
 }
