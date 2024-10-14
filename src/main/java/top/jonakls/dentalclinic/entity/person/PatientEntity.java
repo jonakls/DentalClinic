@@ -5,10 +5,11 @@ import top.jonakls.dentalclinic.entity.TurnEntity;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class PatientEntity extends PersonEntity {
+public class PatientEntity extends PersonEntity implements Serializable {
     private boolean hasEps;
     private String typeBlood;
     @OneToOne

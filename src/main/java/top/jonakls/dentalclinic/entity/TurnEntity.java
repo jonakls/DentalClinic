@@ -9,26 +9,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class TurnEntity {
+public class TurnEntity implements ObjectEntity {
 
     @Id
-    private int id;
+    private int turnId;
     private String dateTurn;
     private String hourTurn;
     private String treatment;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_patient")
     private PatientEntity patient;
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_dentist")
     private DentistEntity dentist;
 
     public TurnEntity() {
     }
 
-    public TurnEntity(int id, String dateTurn, String hourTurn, String treatment, PatientEntity patient, DentistEntity dentist) {
-        this.id = id;
+    public TurnEntity(int turnId, String dateTurn, String hourTurn, String treatment, PatientEntity patient, DentistEntity dentist) {
+        this.turnId = turnId;
         this.dateTurn = dateTurn;
         this.hourTurn = hourTurn;
         this.treatment = treatment;
@@ -36,12 +36,13 @@ public class TurnEntity {
         this.dentist = dentist;
     }
 
+    @Override
     public int getId() {
-        return this.id;
+        return this.turnId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTurnId(int id) {
+        this.turnId = id;
     }
 
     public String getDateTurn() {

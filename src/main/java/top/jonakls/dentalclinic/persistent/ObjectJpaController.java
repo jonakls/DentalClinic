@@ -1,17 +1,19 @@
 package top.jonakls.dentalclinic.persistent;
 
-import top.jonakls.dentalclinic.entity.UserEntity;
+import top.jonakls.dentalclinic.entity.ObjectEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.Serializable;
 
-public class UserJpaController implements Serializable {
+public class ObjectJpaController<T extends ObjectEntity> implements Serializable {
 
+    private final Class<T> clazz;
     private EntityManagerFactory emf = null;
 
-    public UserJpaController() {
+    public ObjectJpaController(Class<T> clazz) {
+        this.clazz = clazz;
         this.emf = Persistence.createEntityManagerFactory("DentalClinicPU");
     }
 
@@ -19,12 +21,12 @@ public class UserJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(final UserEntity user) {
+    public void create(final T object) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(user);
+            em.persist(object);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -33,21 +35,21 @@ public class UserJpaController implements Serializable {
         }
     }
 
-    public UserEntity findUserEntity(final String id) {
+    public T findOne(final int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UserEntity.class, id);
+            return em.find(clazz, id);
         } finally {
             em.close();
         }
     }
 
-    public void update(final UserEntity user) {
+    public void updateOne(final T object) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.merge(user);
+            em.merge(object);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -56,12 +58,12 @@ public class UserJpaController implements Serializable {
         }
     }
 
-    public void delete(final UserEntity user) {
+    public void deleteOne(final T object) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.remove(em.merge(user));
+            em.remove(em.merge(object));
             em.getTransaction().commit();
         } finally {
             if (em != null) {

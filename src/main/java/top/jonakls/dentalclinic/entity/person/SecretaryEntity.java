@@ -1,9 +1,10 @@
 package top.jonakls.dentalclinic.entity.person;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class SecretaryEntity extends PersonEntity {
+public class SecretaryEntity extends PersonEntity implements Serializable {
     private String sector;
 
     public SecretaryEntity() {

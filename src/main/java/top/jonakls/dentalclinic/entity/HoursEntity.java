@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class HoursEntity {
+public class HoursEntity implements ObjectEntity {
 
     @Id
     private int id;
@@ -26,6 +26,7 @@ public class HoursEntity {
         this.dentist = dentist;
     }
 
+    @Override
     public int getId() {
         return this.id;
     }

@@ -1,16 +1,16 @@
 package top.jonakls.dentalclinic.entity.person;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import top.jonakls.dentalclinic.entity.ObjectEntity;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class PersonEntity implements Serializable {
+public class PersonEntity implements Serializable, ObjectEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String dni;
     private String name;
@@ -32,6 +32,7 @@ public class PersonEntity implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
+    @Override
     public int getId() {
         return this.id;
     }

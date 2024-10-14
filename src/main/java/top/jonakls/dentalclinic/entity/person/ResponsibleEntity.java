@@ -1,9 +1,10 @@
 package top.jonakls.dentalclinic.entity.person;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class ResponsibleEntity extends PersonEntity {
+public class ResponsibleEntity extends PersonEntity implements Serializable {
     private String typeResponsible;
 
     public ResponsibleEntity() {

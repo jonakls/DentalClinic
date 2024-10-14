@@ -6,10 +6,11 @@ import top.jonakls.dentalclinic.entity.TurnEntity;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class DentistEntity extends PersonEntity {
+public class DentistEntity extends PersonEntity implements Serializable {
     private String speciality;
     @OneToOne
     private PatientEntity patient;
